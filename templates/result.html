@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Transaction Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="userbox">
+      <div><strong>User ID</strong></div>
+      <div>{{ result.user_id }}</div>
+    </div>
+    <div class="bankname">DemoBank • Transaction Result</div>
+  </header>
+
+  <main class="result-grid">
+    <section class="main-card">
+      <h1>{{ result.fraud_label }}</h1>
+      
+      {% if result.error %}
+        <div class="alert" style="background:#ff5c5c; color: white; padding: 12px; border-radius: 8px; margin: 10px 0;">
+          <strong>Error:</strong> {{ result.error }}
+        </div>
+        <p class="muted">Please check your inputs and try again.</p>
+      {% else %}
+        <div class="score-row">
+          <div class="score-pill">Fraud Score: <strong>{{ result.fraud_score_pct }}%</strong></div>
+        </div>
+
+        {% if result.prediction == 1 %}
+        <div class="alert" style="background:#ff5c5c">
+          ⚠️ Fraud detected! Do you still want to proceed with the payment?
+        </div>
+
+        <form method="POST" action="/confirm">
+          <input type="hidden" name="user_id" value="{{ result.user_id }}">
+          <div class="form-actions">
+            <button class="btn proceed" type="submit" name="decision" value="proceed">✅ Yes, Proceed</button>
+            <button class="btn cancel" type="submit" name="decision" value="cancel">❌ No, Cancel</button>
+          </div>
+        </form>
+
+        {% else %}
+        <div class="ok" style="background:#57c99b">
+          ✅ Transaction Approved and Processed Successfully
+        </div>
+        {% endif %}
+
+        <div class="detail-block">
+          <h3>Transaction Details</h3>
+          <p><strong>Amount:</strong> ₹{{ result.formatted_amount }}</p>
+          <p><strong>Type:</strong> {{ result.txn_type }}</p>
+          <p><strong>Time Period:</strong> {{ result.time_period }}</p>
+          <p><strong>Failed Transactions:</strong> {{ result.failed_txn }}</p>
+        </div>
+      {% endif %}
+
+      <a href="/" class="btn back">← Back to Dashboard</a>
+    </section>
+
+    {% if not result.error %}
+    <aside class="side-cards">
+      <div class="card small">
+        <h4>Your Account</h4>
+        <p><strong>Old Balance:</strong> ₹{{ result.formatted_oldbalanceOrg }}</p>
+        <p><strong>New Balance:</strong> ₹{{ result.formatted_newbalanceOrig }}</p>
+        <p><strong>Balance Change:</strong> -₹{{ "{:,.2f}".format(result.origin_balance_change) }}</p>
+      </div>
+      <div class="card small dest">
+        <h4>Destination Account</h4>
+        <p><strong>Old Balance:</strong> ₹{{ result.formatted_oldbalanceDest }}</p>
+        <p><strong>New Balance:</strong> ₹{{ result.formatted_newbalanceDest }}</p>
+        <p><strong>Balance Change:</strong> +₹{{ "{:,.2f}".format(result.dest_balance_change) }}</p>
+      </div>
+    </aside>
+    {% endif %}
+  </main>
+</body>
+</html>

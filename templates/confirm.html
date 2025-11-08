@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Payment Confirmation</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="userbox">
+      <div><strong>User ID</strong></div>
+      <div>{{ user_id }}</div>
+    </div>
+    <div class="bankname">DemoBank • Confirmation</div>
+  </header>
+
+  <main class="main-grid">
+    <section class="main-card" style="text-align:center;">
+      {% if status == 'cancelled' %}
+        <h1 style="color:#ff5c5c;">❌ Transaction Cancelled</h1>
+        <p style="font-size:16px; color:#6b7280;">Your transaction was stopped for security reasons. This helps protect your account from potential fraud.</p>
+        <!-- Enhanced: Added explanatory text -->
+      {% elif status == 'completed' %}
+        <h1 style="color:#57c99b;">✅ Transaction Completed</h1>
+        <p style="font-size:16px; color:#6b7280;">Your payment was processed after manual confirmation. Monitor your account for any unusual activity.</p>
+        <!-- Enhanced: Added advisory text -->
+      {% endif %}
+      <a href="/" class="btn back">← Back to Dashboard</a>
+    </section>
+  </main>
+</body>
+</html>
