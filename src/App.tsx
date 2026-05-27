@@ -1,3 +1,11 @@
+/**
+ * FraudShield Frontend - Main Application Component
+ * -----------------------------------------------
+ * Description: Core component handling routing and global layout for the FraudShield platform.
+ * Author: FraudShield Team
+ * File: src/App.tsx
+ */
+
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';

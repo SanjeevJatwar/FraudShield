@@ -1,3 +1,11 @@
+"""
+FraudShield Backend - AI Model API
+----------------------------------
+Description: Flask-based API for handling fraud prediction requests using a pre-trained XGBoost model.
+Author: FraudShield Team
+File: src/app.py
+"""
+
 from flask import Flask, request, jsonify
 import joblib
 import pandas as pd

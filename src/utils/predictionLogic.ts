@@ -1,3 +1,11 @@
+/**
+ * FraudShield Prediction Logic & Feature Engineering
+ * --------------------------------------------------
+ * Description: Contains logic for preparing transaction features and handling API calls to the ML backend.
+ * Author: FraudShield Team
+ * File: src/utils/predictionLogic.ts
+ */
+
 export interface PredictionInput {
   amount: number;
   failedLoginAttempts: number;

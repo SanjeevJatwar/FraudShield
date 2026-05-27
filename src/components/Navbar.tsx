@@ -1,3 +1,10 @@
+/**
+ * Navbar Component
+ * ----------------
+ * Description: Global navigation bar providing access to different sections of the platform.
+ * File: src/components/Navbar.tsx
+ */
+
 import { Menu, X, Shield, Zap } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Button from './Button';

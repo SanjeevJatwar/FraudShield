@@ -1,3 +1,10 @@
+/**
+ * Demo Page Component
+ * -------------------
+ * Description: Interactive dashboard where users can simulate transactions and view AI-powered fraud risk assessments.
+ * File: src/pages/Demo.tsx
+ */
+
 import { useState, useEffect } from 'react';
 import { Code, ChevronDown, ChevronUp, AlertTriangle, CheckCircle, Clock, DollarSign, UserX, Activity, Zap, Shield, Target } from 'lucide-react';
 import Card from '../components/Card';

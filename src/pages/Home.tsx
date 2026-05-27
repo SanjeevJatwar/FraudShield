@@ -1,3 +1,10 @@
+/**
+ * Home Page Component
+ * -------------------
+ * Description: The landing page for FraudShield, featuring 3D animations and key value propositions.
+ * File: src/pages/Home.tsx
+ */
+
 import { TrendingUp, Shield, Target, Brain, Zap, Lock, Eye, CheckCircle, ArrowRight } from 'lucide-react';
 import Button from '../components/Button';
 import Card from '../components/Card';
